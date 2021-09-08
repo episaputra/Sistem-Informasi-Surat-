@@ -1,0 +1,30 @@
+title Kelola Surat Masuk
+actor Pegawai
+boundary ViewDashboard
+boundary ViewSuratMasuk
+control SuratMasukController
+entity suratmasuk
+
+Pegawai->ViewDashboard:Pilih Menu Surat Masuk
+ViewDashboard->SuratMasukController:index()
+SuratMasukController->suratmasuk:SelectAll()
+suratmasuk-->SuratMasukController:return()
+SuratMasukController->ViewSuratMasuk:index()
+
+Pegawai->ViewSuratMasuk:Klik tambah surat dan \nmasukkan data surat masuk
+ViewSuratMasuk->SuratMasukController:prosesTambahSurat()
+SuratMasukController->suratmasuk:insertSurat()
+suratmasuk-->SuratMasukController:return()
+SuratMasukController->ViewSuratMasuk:index()
+
+Pegawai->ViewSuratMasuk:Klik edit surat dan \nubah data surat masuk
+ViewSuratMasuk->SuratMasukController:editSurat()
+SuratMasukController->suratmasuk:edit_surat()
+suratmasuk-->SuratMasukController:return()
+SuratMasukController->ViewSuratMasuk:index()
+
+Pegawai->ViewSuratMasuk:Pilih aksi hapus surat
+ViewSuratMasuk->SuratMasukController:prosesHapusSurat()
+SuratMasukController->suratmasuk:hapus_surat()
+suratmasuk->SuratMasukController:return()
+SuratMasukController->ViewSuratMasuk:index()
